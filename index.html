@@ -44,13 +44,14 @@
   --r:14px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea,a,.sw{touch-action:manipulation}
 body{margin:0;background:var(--navy-900);font-family:var(--b);color:var(--ink)}
 button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
 input,select,textarea{font:inherit;color:inherit}
 
 /* ---------- shell ---------- */
 .stage{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:0}
-.phone{width:100%;max-width:430px;background:var(--cream);min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.phone{width:100%;max-width:430px;background:var(--cream);min-height:100vh;min-height:100dvh;position:relative;overflow:hidden;display:flex;flex-direction:column}
 @media(min-width:600px){
   .stage{padding:28px 16px 40px;background:
     radial-gradient(120% 90% at 50% 0%, #1B3E5E 0%, var(--navy-900) 70%)}
@@ -59,7 +60,7 @@ input,select,textarea{font:inherit;color:inherit}
 .scr{display:none;flex-direction:column;flex:1;min-height:0}
 .scr.on{display:flex}
 .body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.pad{padding:18px 20px 24px}
+.pad{padding:18px 20px calc(28px + env(safe-area-inset-bottom))}
 
 /* ---------- top bars ---------- */
 .bar{background:var(--navy);color:var(--paper);display:flex;align-items:center;gap:12px;padding:16px 16px 15px;flex-shrink:0}
@@ -168,7 +169,7 @@ input,select,textarea{font:inherit;color:inherit}
 .trust svg{flex-shrink:0;color:var(--navy-600)}
 
 /* ---------- cart bar ---------- */
-.cartbar{position:sticky;bottom:0;margin:16px -20px -24px;background:var(--navy);color:var(--paper);padding:14px 20px;display:flex;align-items:center;gap:14px}
+.cartbar{position:sticky;bottom:12px;margin:16px 0 0;background:var(--navy);color:var(--paper);border-radius:12px;padding:14px 16px calc(14px + env(safe-area-inset-bottom));box-shadow:0 6px 20px rgba(12,31,51,.3);display:flex;align-items:center;gap:14px}
 .cartbar .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.62}
 .cartbar .tot{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:1px}
 .cartbar button{margin-left:auto;background:var(--terra);color:#fff;border-radius:10px;padding:12px 17px;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
@@ -298,6 +299,36 @@ input,select,textarea{font:inherit;color:inherit}
 .nostock{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);border:1px solid var(--terra);border-radius:20px;padding:4px 9px;flex-shrink:0}
 .prow.dim{opacity:.45}
 
+
+/* formatos por peso */
+.fmts{grid-column:1/-1;display:flex;gap:6px;margin:2px 0 2px 64px}
+.fmts button{border:1px solid var(--line);background:var(--cream);border-radius:20px;padding:5px 12px;font-size:11.5px;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.fmts button.on{background:var(--navy);border-color:var(--navy);color:var(--paper);font-weight:700}
+.fmts button b{background:rgba(255,255,255,.25);border-radius:9px;padding:0 5px;font-size:10.5px}
+.fmts button:not(.on) b{background:var(--navy);color:var(--paper)}
+.prow{flex-wrap:wrap}
+.fld .opt{color:var(--navy-300);font-size:11px;letter-spacing:0;text-transform:none}
+
+/* pago */
+.paytot{background:var(--navy);color:var(--paper);border-radius:var(--r);padding:16px 18px;display:flex;align-items:baseline;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.paytot span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.65}
+.paytot b{font-size:24px;font-weight:700;margin-left:auto;font-variant-numeric:tabular-nums}
+.paytot .off{width:100%;margin-left:0;color:#8FD3AC;opacity:1;letter-spacing:.04em;text-transform:none;font-size:12.5px}
+.pay{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 15px;margin-bottom:10px}
+.pay.on{border-color:var(--navy);box-shadow:0 0 0 1px var(--navy)}
+.pay.off{opacity:.5}
+.pay .rad{width:19px;height:19px;border-radius:50%;border:1.5px solid #BDB6A6;flex-shrink:0;position:relative}
+.pay.on .rad{border-color:var(--navy)}
+.pay.on .rad::after{content:'';position:absolute;inset:3.5px;border-radius:50%;background:var(--navy)}
+.pay .pt{flex:1;min-width:0}
+.pay .pt b{display:block;font-size:14.5px;font-weight:600}
+.pay .pt span{display:block;font-size:12px;color:var(--ink-2);margin-top:2px;line-height:1.35}
+.pay .tag{background:#DCEBE2;color:#1E4E36;font-size:10.5px;font-weight:700;letter-spacing:.06em;border-radius:20px;padding:5px 9px;flex-shrink:0}
+.aliasbox{background:var(--sand);border-radius:var(--r);padding:14px 16px;margin:-4px 0 10px}
+.aliasbox .k{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#6B5A3A}
+.aliasbox .v{font-size:17px;font-weight:700;letter-spacing:.03em;margin-top:3px;word-break:break-all}
+.aliasbox .tt{font-size:13.5px;margin-top:2px}
+.aliasbox .cp{margin-top:12px;background:var(--navy);color:var(--paper);border-radius:9px;padding:9px 15px;font-size:12px;font-weight:700;letter-spacing:.06em}
 .banner{background:var(--navy-900);color:#C3D2DE;font-size:11.5px;text-align:center;padding:8px 14px;line-height:1.4}
 .banner b{color:#fff;font-weight:500}
 @media(prefers-reduced-motion:no-preference){
@@ -401,19 +432,11 @@ input,select,textarea{font:inherit;color:inherit}
     <h1>Datos del cliente</h1><span class="icb"></span>
   </div>
   <div class="body"><div class="pad">
-    <div class="seg">
-      <button id="segD" class="on" onclick="setModo('envio')">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2zM13 10h4l4 3.5V16h-8z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>
-        Envío</button>
-      <button id="segR" onclick="setModo('retiro')">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16v11H4zM4 9l2-4h12l2 4M9 13h6"/></svg>
-        Retiro</button>
-    </div>
-    <div class="fld"><label for="f-nom">Nombre completo</label><input id="f-nom" placeholder="Nombre y apellido" autocomplete="name"></div>
+    <div id="recordado"></div>
+    <div class="fld"><label for="f-nom">Nombre y apellido</label><input id="f-nom" placeholder="Como querés que te llamemos" autocomplete="name"></div>
     <div class="fld"><label for="f-tel">Teléfono / WhatsApp</label><input id="f-tel" placeholder="11 1234 5678" inputmode="tel" autocomplete="tel"></div>
-    <div class="fld" id="w-dir"><label for="f-dir">Dirección de entrega</label><input id="f-dir" placeholder="Calle, número, piso / depto" autocomplete="street-address"></div>
-    <div class="fld" id="w-suc" hidden><label for="f-suc">Sucursal para retirar</label><select id="f-suc"></select></div>
-    <div class="fld"><label for="f-obs">Comentarios (opcional)</label><textarea id="f-obs" rows="3" placeholder="Ej: horario de entrega, referencias, timbre"></textarea></div>
+    <div class="fld"><label for="f-dir">Piso y departamento <span class="opt">opcional</span></label><input id="f-dir" placeholder="Ej: 4° B" autocomplete="address-line2"></div>
+    <div class="fld"><label for="f-obs">Comentarios <span class="opt">opcional</span></label><textarea id="f-obs" rows="3" placeholder="Ej: horario de entrega, timbre, referencias"></textarea></div>
     <button class="btn" onclick="submitForm()">Siguiente
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
     <p class="hint">Gracias por elegirnos</p>
@@ -427,6 +450,15 @@ input,select,textarea{font:inherit;color:inherit}
     <h1>Resumen de pedido</h1><span class="icb"></span>
   </div>
   <div class="body"><div class="pad" id="sumBody"></div></div>
+</section>
+
+<!-- PAGO -->
+<section class="scr" id="s-pago">
+  <div class="bar">
+    <button class="icb" onclick="go('sum')" aria-label="Volver">‹</button>
+    <h1>Forma de pago</h1><span class="icb"></span>
+  </div>
+  <div class="body"><div class="pad" id="pagoBody"></div></div>
 </section>
 
 <!-- DONE -->
@@ -487,6 +519,11 @@ const NEGOCIO = {
   cierreHora: 20,           // hora de cierre (para calcular la fecha de entrega)
   // >>> PONER ACÁ EL WHATSAPP DEL LOCAL: código de país + área, sin + ni espacios
   whatsapp: "5491100000000",
+  // >>> DATOS DE COBRO
+  alias: "MARIANTONIA.PASTAS",
+  titular: "Pastas Mariantonia S.R.L.",
+  descEfectivo: 0.10,       // 10% off pagando en efectivo
+  mercadoPago: "",          // link de pago de Mercado Pago; vacío = botón deshabilitado
 };
 
 const LOCALES = [
@@ -556,21 +593,23 @@ const CATALOGO = [
 
   { id:"noq", nombre:"Ñoquis", desc:"", foto:"",
     grupos:[{ nombre:"Nuestros ñoquis", items:[
-      { nombre:"Ñoquis de Papa", precio:5800, unidad:"1 kg", foto:"", top:true,
+      { nombre:"Ñoquis de Papa", precio:5800, unidad:"", foto:"", top:true,
+        formatos:[{n:"500 g", p:3500},{n:"1 kg", p:5800}],
         desc:"Papa, harina y huevo. Nada más. Livianos, como los de la nonna." },
-      { nombre:"Ñoquis de Ricotta", precio:6200, unidad:"1 kg", foto:"",
+      { nombre:"Ñoquis de Ricotta", precio:6200, unidad:"", foto:"",
+        formatos:[{n:"500 g", p:3800},{n:"1 kg", p:6200}],
         desc:"Más suaves y aireados que los de papa." },
     ]}]},
 
   { id:"fid", nombre:"Fideos", desc:"", foto:"",
     grupos:[{ nombre:"Al huevo", items:[
-      { nombre:"Tallarines al Huevo", precio:4900, unidad:"Caja de 1 kg", foto:"", desc:"Corte ancho, la pasta de los domingos." },
-      { nombre:"Spaghettis", precio:4900, unidad:"Caja de 1 kg", foto:"", desc:"Corte fino y parejo." },
-      { nombre:"Vermichelis", precio:4900, unidad:"Caja de 1 kg", foto:"", desc:"Más finos que el spaghetti, cocción rápida." },
-      { nombre:"Fuccilis", precio:4900, unidad:"Caja de 1 kg", foto:"", desc:"Espiralados, agarran bien la salsa." },
-      { nombre:"Mostacholes", precio:4900, unidad:"Caja de 1 kg", foto:"", desc:"Cortos, ideales para gratinar." },
-      { nombre:"Hélices", precio:4900, unidad:"Caja de 1 kg", foto:"", desc:"Para ensaladas frías y salsas livianas." },
-      { nombre:"Tallarines de Espinaca", precio:5200, unidad:"Caja de 1 kg", foto:"", desc:"Con espinaca en la masa." },
+      { nombre:"Tallarines al Huevo", precio:4900, unidad:"", foto:"", formatos:[{n:"500 g", p:2950},{n:"1 kg", p:4900}], desc:"Corte ancho, la pasta de los domingos." },
+      { nombre:"Spaghettis", precio:4900, unidad:"", foto:"", formatos:[{n:"500 g", p:2950},{n:"1 kg", p:4900}], desc:"Corte fino y parejo." },
+      { nombre:"Vermichelis", precio:4900, unidad:"", foto:"", formatos:[{n:"500 g", p:2950},{n:"1 kg", p:4900}], desc:"Más finos que el spaghetti, cocción rápida." },
+      { nombre:"Fuccilis", precio:4900, unidad:"", foto:"", formatos:[{n:"500 g", p:2950},{n:"1 kg", p:4900}], desc:"Espiralados, agarran bien la salsa." },
+      { nombre:"Mostacholes", precio:4900, unidad:"", foto:"", formatos:[{n:"500 g", p:2950},{n:"1 kg", p:4900}], desc:"Cortos, ideales para gratinar." },
+      { nombre:"Hélices", precio:4900, unidad:"", foto:"", formatos:[{n:"500 g", p:2950},{n:"1 kg", p:4900}], desc:"Para ensaladas frías y salsas livianas." },
+      { nombre:"Tallarines de Espinaca", precio:5200, unidad:"", foto:"", formatos:[{n:"500 g", p:3150},{n:"1 kg", p:5200}], desc:"Con espinaca en la masa." },
     ]}]},
 
   { id:"can", nombre:"Canelones", desc:"", foto:"",
@@ -607,7 +646,7 @@ const CATALOGO = [
       { nombre:"Albahaca Fresca", precio:1200, unidad:"Atado", foto:"", desc:"Cortada el mismo día." },
     ]}]},
 
-  { id:"vin", nombre:"Vinoteca", desc:"", foto:"",
+  { id:"vin", nombre:"Vinoteca", desc:"", foto:"", finRecorrido:true,
     grupos:[{ nombre:"Tintos", items:[
       { nombre:"Malbec de la Casa", precio:8500, unidad:"Botella 750 ml", foto:"", top:true, desc:"Mendoza. Redondo, para acompañar ravioles de carne." },
       { nombre:"Cabernet Sauvignon", precio:9200, unidad:"Botella 750 ml", foto:"", desc:"Estructurado, para los rellenos con carácter." },
@@ -618,7 +657,7 @@ const CATALOGO = [
       { nombre:"Espumante Extra Brut", precio:11500, unidad:"Botella 750 ml", foto:"", desc:"Para la mesa del domingo." },
     ]}]},
 
-  { id:"pos", nombre:"Postres", desc:"", foto:"",
+  { id:"pos", nombre:"Postres", desc:"", foto:"", finRecorrido:true,
     grupos:[{ nombre:"Caseros", items:[
       { nombre:"Tiramisú", precio:4200, unidad:"Porción individual", foto:"", top:true, desc:"Mascarpone, café y cacao. Receta de la casa." },
       { nombre:"Flan Casero", precio:3600, unidad:"Porción individual", foto:"", desc:"Con dulce de leche y crema." },
@@ -631,11 +670,11 @@ const CATALOGO = [
 const cart = {};
 let curProd = null, prevScr = 'cat', scr = 'home';
 let abiertaCat = null, scrollCat = 0;
-let modo = 'envio';
-const cliente = { nom:'', tel:'', dir:'', suc:'', obs:'' };
+const modo = 'envio';   // esta app es solo entrega a domicilio
+const cliente = { nom:'', tel:'', dir:'', obs:'' };
 
 /* ============ UTILIDADES ============ */
-const VERSION = 'v1.0';
+const VERSION = 'v1.1';
 const $ = s => document.querySelector(s);
 const money = n => '$' + Math.round(n).toLocaleString('es-AR');
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -655,23 +694,39 @@ function photo(cls, src, ini){
   return '<div class="ph '+cls+'"><span class="ini">'+esc(ini.charAt(0))+'</span>'+
     '<svg class="cam" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h3.5L8 5.5h8L17.5 8H21v12H3z"/><circle cx="12" cy="13.5" r="3.6"/></svg></div>';
 }
+// Un producto con formatos (500 g / 1 kg) genera una entrada por formato:
+// cada una es una línea distinta del pedido y de la lista de producción.
 function allItems(){
   const out = [];
-  CATALOGO.forEach(c => c.grupos.forEach(g => g.items.forEach(i =>
-    out.push({...i, catId:c.id, catNombre:c.nombre, key:c.id+'|'+i.nombre}))));
+  CATALOGO.forEach(c => c.grupos.forEach(g => g.items.forEach(i => {
+    const base = { ...i, catId:c.id, catNombre:c.nombre, prodId:c.id+'|'+i.nombre };
+    if (i.formatos && i.formatos.length){
+      i.formatos.forEach(f => out.push({ ...base,
+        formato:f.n, precio:f.p, unidad:f.n,
+        nombre:i.nombre, nombreFull:i.nombre+' · '+f.n,
+        key:c.id+'|'+i.nombre+'|'+f.n }));
+    } else {
+      out.push({ ...base, formato:null, nombreFull:i.nombre, key:c.id+'|'+i.nombre });
+    }
+  })));
   return out;
 }
 const ITEMS = allItems();
 const find = k => ITEMS.find(i => i.key === k);
+const variantes = prodId => ITEMS.filter(i => i.prodId === prodId);
+const formatoSel = {};                       // prodId -> formato elegido en la fila
+const claveDe = i => i.formatos && i.formatos.length
+  ? i.catId+'|'+i.nombre+'|'+(formatoSel[i.catId+'|'+i.nombre] || i.formatos[0].n)
+  : i.catId+'|'+i.nombre;
+function elegirFormato(prodId, f){ formatoSel[prodId] = f; guardarCarrito(); renderCats(); }
 
 // un producto dado de baja después de entrar al carrito no puede pedirse
 function lines(){
   return Object.keys(cart).filter(k => cart[k] > 0 && find(k) && itemOn(k))
-    .map(k => { const i = find(k); return {...i, qty:cart[k], sub:i.precio * cart[k]}; });
+    .map(k => { const i = find(k); return {...i, nombre:i.nombreFull, qty:cart[k], sub:i.precio * cart[k]}; });
 }
 const subtotal = () => lines().reduce((s,l) => s + l.sub, 0);
 function envio(){
-  if (modo === 'retiro') return 0;
   const s = subtotal();
   return (s === 0 || s >= NEGOCIO.envioGratisDesde) ? 0 : NEGOCIO.envioCosto;
 }
@@ -692,8 +747,9 @@ const clon = o => JSON.parse(JSON.stringify(o));
 
 const catViva  = c => !MENU.catsDel[c.id];
 const catOn    = c => catViva(c) && !MENU.catsOff[c.id];
-const itemVivo = k => !MENU.del[k];
-const itemOn   = k => itemVivo(k) && !MENU.off[k];
+const raiz     = k => k.split('|').slice(0,2).join('|');   // saca el formato
+const itemVivo = k => !MENU.del[raiz(k)];
+const itemOn   = k => itemVivo(k) && !MENU.off[raiz(k)];
 const visiblesDe = c => c.grupos.reduce((n,g) =>
   n + g.items.filter(i => itemVivo(c.id + '|' + i.nombre)).length, 0);
 
@@ -705,6 +761,27 @@ function leerLocal(){
 // Hoy la disponibilidad vive en el navegador de quien la edita.
 // Cuando conectemos el backend, initMenu() lee del servidor y publicarMenu()
 // escribe: son los dos únicos puntos que hay que tocar.
+function guardarCarrito(){
+  try {
+    localStorage.setItem('ma_carrito', JSON.stringify({
+      cart, conserva, abiertaCat, formatoSel, ts: Date.now(),
+    }));
+  } catch(e){}
+}
+function leerCarrito(){
+  try {
+    const d = JSON.parse(localStorage.getItem('ma_carrito') || 'null');
+    if (!d || !d.cart) return false;
+    if (Date.now() - (d.ts || 0) > 7*24*3600*1000) return false;   // más de una semana: se descarta
+    Object.assign(cart, d.cart);
+    Object.assign(conserva, d.conserva || {});
+    Object.assign(formatoSel, d.formatoSel || {});
+    abiertaCat = d.abiertaCat || null;
+    return Object.keys(d.cart).length > 0;
+  } catch(e){ return false; }
+}
+function borrarCarrito(){ try { localStorage.removeItem('ma_carrito'); } catch(e){} }
+
 function initMenu(){
   leerLocal();
   refrescar();
@@ -756,12 +833,12 @@ const conserva = {};                 // key -> 'freezer'
 const vistos = {};                   // módulos que el cliente ya abrió
 
 const esFrz = k => conserva[k] === 'freezer';
-function setCons(k, v){ if (v === 'freezer') conserva[k] = 'freezer'; else delete conserva[k]; renderCart(); }
+function setCons(k, v){ if (v === 'freezer') conserva[k] = 'freezer'; else delete conserva[k]; guardarCarrito(); renderCart(); }
 function todoFreezer(){
   const ls = lines().filter(l => freezable(l.catId));
   const todos = ls.every(l => esFrz(l.key));
   ls.forEach(l => { if (todos) delete conserva[l.key]; else conserva[l.key] = 'freezer'; });
-  renderCart();
+  guardarCarrito(); renderCart();
 }
 
 const enCarrito = c => c.grupos.reduce((n,g) =>
@@ -771,6 +848,7 @@ const modulosVivos = () => CATALOGO.filter(c => catOn(c) && visiblesDe(c) > 0);
 // Adónde mandamos al cliente después de este módulo: primero la salsa que
 // le falta para la pasta que acaba de elegir, después lo que no recorrió.
 function siguienteModulo(c){
+  if (c.finRecorrido) return null;
   const vivos = modulosVivos();
   const salsa = vivos.find(x => x.id === 'sal');
   if (freezable(c.id) && c.id !== 'sal' && salsa && enCarrito(salsa) === 0) return salsa;
@@ -808,6 +886,8 @@ function go(n){
   if (n === 'cart') renderCart();
   if (n === 'sum') renderSum();
   if (n === 'panel') renderPanel();
+  if (n === 'form')  renderForm();
+  if (n === 'pago')  renderPago();
 }
 // al volver del producto, el catálogo queda donde estaba
 function back(){
@@ -854,14 +934,24 @@ function cuerpoModulo(c){
     if (!items.length) return;
     h += '<div class="grp">'+esc(g.nombre)+'</div>';
     items.forEach(i => {
-      const k = c.id + '|' + i.nombre, q = cart[k] || 0, on = itemOn(k);
+      const prodId = c.id + '|' + i.nombre;
+      const k = claveDe({...i, catId:c.id}), it = find(k) || i, q = cart[k] || 0, on = itemOn(k);
       h += '<div class="prow'+(on ? '' : ' dim')+'">' + photo('md', i.foto, i.nombre) +
         (on ? '<button class="txt" onclick="openProd(\''+jsq(k)+'\')">' : '<div class="txt">') +
           '<div class="nm">'+esc(i.nombre)+'</div>' +
-          '<div class="un">'+esc(i.unidad)+'</div>' +
-          '<div class="pr">'+money(i.precio)+'</div>' +
+          (it.unidad ? '<div class="un">'+esc(it.unidad)+'</div>' : '') +
+          '<div class="pr">'+money(it.precio)+'</div>' +
         (on ? '</button>' : '</div>') +
-        (on ? stepper(k, q) : '<span class="nostock">Sin stock</span>') + '</div>';
+        (on ? stepper(k, q) : '<span class="nostock">Sin stock</span>');
+      if (on && i.formatos){
+        const sel = formatoSel[prodId] || i.formatos[0].n;
+        h += '<div class="fmts">' + i.formatos.map(f => {
+          const qf = cart[prodId+'|'+f.n] || 0;
+          return '<button class="'+(f.n === sel ? 'on' : '')+'" onclick="elegirFormato(\''+jsq(prodId)+'\',\''+jsq(f.n)+'\')">' +
+            esc(f.n) + (qf ? '<b>'+qf+'</b>' : '') + '</button>';
+        }).join('') + '</div>';
+      }
+      h += '</div>';
     });
   });
   const n = enCarrito(c), sig = siguienteModulo(c);
@@ -878,6 +968,7 @@ function cuerpoModulo(c){
 function toggleMod(id, forzar){
   abiertaCat = (abiertaCat === id && !forzar) ? null : id;
   if (abiertaCat) vistos[abiertaCat] = true;
+  guardarCarrito();
   renderCats();
   if (abiertaCat){
     const el = document.getElementById('mod-' + abiertaCat);
@@ -903,6 +994,7 @@ function cartBar(){
 
 function setQty(k, q){
   if (q <= 0) delete cart[k]; else cart[k] = q;
+  guardarCarrito();
   if (scr === 'cat')  renderCats();
   if (scr === 'prod') renderProd();
   if (scr === 'cart') renderCart();
@@ -956,12 +1048,7 @@ function renderCart(){
     dots(); return;
   }
 
-  let h = '<div class="seg">' +
-    '<button class="'+(modo === 'envio' ? 'on' : '')+'" onclick="setModo(\'envio\')">' +
-      '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2zM13 10h4l4 3.5V16h-8z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>Envío</button>' +
-    '<button class="'+(modo === 'retiro' ? 'on' : '')+'" onclick="setModo(\'retiro\')">' +
-      '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16v11H4zM4 9l2-4h12l2 4M9 13h6"/></svg>Retiro</button></div>';
-
+  let h = '';
   h += ls.map(l => {
     const frz = esFrz(l.key);
     return '<div class="crow">' + photo('md', l.foto, l.nombre) +
@@ -992,9 +1079,7 @@ function renderCart(){
   const e = envio(), falta = NEGOCIO.envioGratisDesde - subtotal();
   h += '<div class="sums">' +
     '<div class="l"><span>Subtotal</span><b>'+money(subtotal())+'</b></div>' +
-    (modo === 'envio'
-      ? '<div class="l"><span>Envío</span><b>'+(e === 0 ? 'Sin cargo' : money(e))+'</b></div>'
-      : '<div class="l"><span>Retiro en sucursal</span><b>Sin cargo</b></div>') +
+    '<div class="l"><span>Envío</span><b>'+(e === 0 ? 'Sin cargo' : money(e))+'</b></div>' +
     '<div class="tt"><span>Total</span><span>'+money(total())+'</span></div></div>';
 
   const bajoMin = modo === 'envio' && subtotal() < NEGOCIO.envioMin;
@@ -1002,7 +1087,7 @@ function renderCart(){
   if (bajoMin)
     h += '<div class="note warn" style="margin-top:16px">' + info +
       'El envío a domicilio arranca en ' + money(NEGOCIO.envioMin) + '. Te faltan ' +
-      money(NEGOCIO.envioMin - subtotal()) + ' — o podés elegir retiro en sucursal.</div>';
+      money(NEGOCIO.envioMin - subtotal()) + ' para el envío a domicilio.</div>';
   else if (modo === 'envio' && falta > 0)
     h += '<div class="note" style="margin-top:16px">' + info +
       'Te faltan '+money(falta)+' para el envío sin cargo.</div>';
@@ -1021,7 +1106,7 @@ function renderCart(){
 
   h += '<div class="note" style="margin-top:20px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="flex-shrink:0"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>' +
     'Entrega el <b>' + proxWed() + '</b>. Pedí hasta el ' + NEGOCIO.cierre + '.</div>';
-  h += '<button class="btn" style="margin-top:18px" onclick="go(\'form\')"'+(bajoMin ? ' disabled' : '')+'>Continuar' +
+  h += '<button class="btn" style="margin-top:18px" onclick="seguir()"'+(bajoMin ? ' disabled' : '')+'>Continuar' +
     '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>';
 
   $('#cartBody').innerHTML = h;
@@ -1032,30 +1117,44 @@ function clearCart(){
   if (!count()) return;
   Object.keys(cart).forEach(k => delete cart[k]);
   Object.keys(conserva).forEach(k => delete conserva[k]);
-  renderCart(); dots();
+  borrarCarrito(); renderCart(); dots();
 }
 
-function setModo(m){
-  modo = m;
-  $('#segD').classList.toggle('on', m === 'envio');
-  $('#segR').classList.toggle('on', m === 'retiro');
-  $('#w-dir').hidden = m !== 'envio';
-  $('#w-suc').hidden = m !== 'retiro';
-  if (scr === 'cart') renderCart();
+// Los datos quedan en el celular del cliente: la segunda vez ya están puestos.
+function guardarCliente(){
+  try { localStorage.setItem('ma_cliente', JSON.stringify(cliente)); } catch(e){}
 }
+function leerCliente(){
+  try {
+    const c = JSON.parse(localStorage.getItem('ma_cliente') || 'null');
+    if (c && c.nom) Object.assign(cliente, c);
+  } catch(e){}
+}
+const clienteListo = () => cliente.nom.length > 2 && cliente.tel.replace(/\D/g,'').length >= 8;
+
+function renderForm(){
+  $('#f-nom').value = cliente.nom;
+  $('#f-tel').value = cliente.tel;
+  $('#f-dir').value = cliente.dir;
+  $('#f-obs').value = cliente.obs;
+  $('#recordado').innerHTML = clienteListo()
+    ? '<div class="note" style="margin-bottom:16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="flex-shrink:0"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.5-4 4-5.5 7-5.5s5.5 1.5 7 5.5"/></svg>' +
+      'Son los datos de tu último pedido. Cambialos si hace falta.</div>'
+    : '';
+}
+
+function seguir(){ go(clienteListo() ? 'sum' : 'form'); }
 
 function submitForm(){
   cliente.nom = $('#f-nom').value.trim();
   cliente.tel = $('#f-tel').value.trim();
   cliente.dir = $('#f-dir').value.trim();
-  cliente.suc = $('#f-suc').value;
   cliente.obs = $('#f-obs').value.trim();
   let ok = true;
   const bad = (id, on) => { $(id).closest('.fld').classList.toggle('bad', on); if (on) ok = false; };
   bad('#f-nom', cliente.nom.length < 3);
   bad('#f-tel', cliente.tel.replace(/\D/g,'').length < 8);
-  bad('#f-dir', modo === 'envio' && cliente.dir.length < 5);
-  if (ok) go('sum');
+  if (ok){ guardarCliente(); go('sum'); }
 }
 
 function grupoResumen(ls, titulo){
@@ -1071,20 +1170,21 @@ function renderSum(){
     '<div class="block"><h3><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.5-4 4-5.5 7-5.5s5.5 1.5 7 5.5"/></svg>Datos del cliente' +
       '<button class="edit" style="margin-left:auto" onclick="go(\'form\')">Editar</button></h3>' +
       '<div style="font-size:14px;line-height:1.6">'+esc(cliente.nom)+'<br>'+esc(cliente.tel)+'<br>' +
-      (modo === 'envio' ? esc(cliente.dir) : 'Retiro en ' + esc(cliente.suc)) +
+      (cliente.dir ? esc(cliente.dir) : '') +
       (cliente.obs ? '<br><span style="color:var(--ink-2)">'+esc(cliente.obs)+'</span>' : '') + '</div></div>' +
 
     '<div class="block"><h3><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6"/></svg>Pedido' +
       '<button class="edit" style="margin-left:auto" onclick="go(\'cart\')">Editar</button></h3>' +
       grupoResumen(ls.filter(l => !esFrz(l.key)), 'Fresco') +
       grupoResumen(ls.filter(l => esFrz(l.key)), 'Para freezar') +
-      '<div class="kv" style="margin-top:6px"><span class="k">'+(modo === 'envio' ? 'Envío' : 'Retiro en sucursal')+'</span><span>'+(envio() === 0 ? 'Sin cargo' : money(envio()))+'</span></div>' +
+      '<div class="kv" style="margin-top:6px"><span class="k">Envío</span><span>'+(envio() === 0 ? 'Sin cargo' : money(envio()))+'</span></div>' +
       '<div class="sums"><div class="tt"><span>Total</span><span>'+money(total())+'</span></div></div></div>' +
 
     '<div class="note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="flex-shrink:0"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>' +
       '<div><b>Entrega</b><br>'+proxWed()+'</div></div>' +
 
-    '<button class="btn terra" style="margin-top:16px" onclick="confirmar()">Confirmar pedido</button>' +
+    '<button class="btn terra" style="margin-top:16px" onclick="go(\'pago\')">Ir al pago' +
+      '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:8px"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>' +
     '<button class="btn ghost" style="margin-top:10px" onclick="go(\'cart\')">Volver al carrito</button>';
 }
 
@@ -1095,11 +1195,13 @@ function textoPedido(id){
   const frescos = ls.filter(l => !esFrz(l.key)), frz = ls.filter(l => esFrz(l.key));
   return 'PEDIDO ' + id + ' — Mariantonia\n' +
     '\n*Cliente*\n' + cliente.nom + '\n' + cliente.tel + '\n' +
-    (modo === 'envio' ? 'Envío a: ' + cliente.dir : 'Retira en: ' + cliente.suc) + '\n' +
+    (cliente.dir ? 'Piso/depto: ' + cliente.dir + '\n' : '') +
     (cliente.obs ? 'Nota: ' + cliente.obs + '\n' : '') +
     (frz.length ? bloque(frescos, 'FRESCO') + bloque(frz, 'PARA FREEZAR') : bloque(ls, 'PEDIDO')) +
-    '\n\n' + (modo === 'envio' ? 'Envío: ' + (envio() === 0 ? 'sin cargo' : money(envio())) + '\n' : '') +
-    '*TOTAL: ' + money(total()) + '*\n' +
+    '\n\nEnvío: ' + (envio() === 0 ? 'sin cargo' : money(envio())) + '\n' +
+    (descuento() ? 'Descuento efectivo: -' + money(descuento()) + '\n' : '') +
+    '*TOTAL: ' + money(totalFinal()) + '*\n' +
+    'Pago: ' + (nombrePago[pago] || 'a confirmar') + '\n' +
     'Entrega: ' + proxWed();
 }
 
@@ -1108,7 +1210,49 @@ function enviarWhatsApp(){
   window.open(url, '_blank', 'noopener');
 }
 
-let ultimoId = null;
+let ultimoId = null, pago = null;      // 'efectivo' | 'transferencia' | 'mp'
+
+const descuento = () => pago === 'efectivo' ? Math.round(subtotal() * NEGOCIO.descEfectivo) : 0;
+const totalFinal = () => subtotal() - descuento() + envio();
+const nombrePago = { efectivo:'Efectivo (10% off)', transferencia:'Transferencia', mp:'Mercado Pago' };
+
+function elegirPago(m){ pago = m; renderPago(); }
+
+function copiarAlias(){
+  const t = NEGOCIO.alias;
+  const listo = () => { const el = $('#aliasBtn'); if (el) el.textContent = 'Copiado'; };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(listo).catch(()=>{});
+  else { const i = document.createElement('textarea'); i.value = t; document.body.appendChild(i);
+         i.select(); try { document.execCommand('copy'); listo(); } catch(e){} i.remove(); }
+}
+
+function renderPago(){
+  const opt = (id, tit, sub, extra) =>
+    '<button class="pay'+(pago === id ? ' on' : '')+'" onclick="elegirPago(\''+id+'\')">' +
+      '<span class="rad"></span><span class="pt"><b>'+tit+'</b><span>'+sub+'</span></span>' +
+      (extra || '') + '</button>';
+
+  let h = '<div class="paytot"><span>Total a pagar</span><b>'+money(totalFinal())+'</b>' +
+    (descuento() ? '<span class="off">Ahorrás '+money(descuento())+'</span>' : '') + '</div>';
+
+  h += opt('efectivo', 'Efectivo', 'Pagás al recibir el pedido', '<span class="tag">10% off</span>');
+  h += opt('transferencia', 'Transferencia', 'A nuestra cuenta, antes de la entrega');
+  if (pago === 'transferencia'){
+    h += '<div class="aliasbox"><div class="k">Alias</div><div class="v">'+esc(NEGOCIO.alias)+'</div>' +
+      '<div class="k" style="margin-top:9px">Titular</div><div class="tt">'+esc(NEGOCIO.titular)+'</div>' +
+      '<button id="aliasBtn" class="cp" onclick="copiarAlias()">Copiar alias</button></div>';
+  }
+  h += NEGOCIO.mercadoPago
+    ? opt('mp', 'Mercado Pago', 'Tarjeta de crédito, débito o dinero en cuenta')
+    : '<div class="pay off"><span class="rad"></span><span class="pt"><b>Mercado Pago</b>' +
+      '<span>Tarjetas — lo habilitamos en breve</span></span></div>';
+
+  h += '<button class="btn terra" style="margin-top:20px" onclick="confirmar()"'+(pago ? '' : ' disabled')+'>' +
+    'Confirmar pedido</button>';
+  h += '<p style="font-size:12px;color:var(--ink-2);text-align:center;line-height:1.5;margin:14px 0 0">' +
+    'Al confirmar se abre WhatsApp con tu pedido.<br>Mandanos el mensaje y te respondemos la confirmación.</p>';
+  $('#pagoBody').innerHTML = h;
+}
 
 function confirmar(){
   guardarUltimo();
@@ -1116,17 +1260,18 @@ function confirmar(){
   $('#doneId').textContent = id;
   $('#doneName').textContent = cliente.nom.split(' ')[0] + ', ya lo tenemos.';
   $('#doneWhen').textContent = proxWed();
-  $('#doneTot').textContent = money(total());
+  $('#doneTot').textContent = money(totalFinal());
   ultimoId = id;
   go('done');
   enviarWhatsApp();
 }
 
 function reset(){
+  pago = null;
+  borrarCarrito();
   Object.keys(cart).forEach(k => delete cart[k]);
   Object.keys(conserva).forEach(k => delete conserva[k]);
   Object.keys(vistos).forEach(k => delete vistos[k]);
-  ['#f-nom','#f-tel','#f-dir','#f-obs'].forEach(s => $(s).value = '');
   document.querySelectorAll('.fld').forEach(f => f.classList.remove('bad'));
   dots(); go('home');
 }
@@ -1258,13 +1403,13 @@ const closeLoc = () => $('#mLoc').classList.remove('on');
 /* ============ INIT ============ */
 $('#locList').innerHTML = LOCALES.map(l =>
   '<div class="loc"><div class="n">'+esc(l.nombre)+'</div><div class="a">'+esc(l.dir)+'</div></div>').join('');
-$('#f-suc').innerHTML = LOCALES.map(l =>
-  '<option value="'+esc(l.nombre)+'">'+esc(l.nombre)+' — '+esc(l.dir)+'</option>').join('');
-cliente.suc = LOCALES[0].nombre;
 $('#stripDate').textContent = 'Entrega el ' + proxWed();
 $('#stripCierre').textContent = 'Pedí hasta el ' + NEGOCIO.cierre;
+leerCliente();
+const habia = leerCarrito();
 renderCats();
 initMenu();
+if (habia) go('cat');
 </script>
 
 <script>
